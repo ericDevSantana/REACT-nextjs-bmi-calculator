@@ -1,7 +1,25 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import {useState} from 'react'
 
 export default function Home() {
+  const [info, setInfo] = useState({
+    height: "",
+    weight: ""
+  });
+
+  function handleChange(event) {
+    const { value, name } = event.target;
+    console.log(name)
+
+    setInfo((prevValue) => {
+      return {
+        ...prevValue,
+        [name]: value
+      }
+    })
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -25,14 +43,14 @@ export default function Home() {
             <label>
               <h1>Enter your height:</h1>
             </label>
-            <input className={styles.height} type="text" name="height" placeholder="1.80 cm" size="50"></input>
+            <input className={styles.height} onChange={handleChange} value={info.height} type="text" name="height" placeholder="1.80 cm" size="50"></input>
   
             {/* Weight entry */}
             <label>
               <h1>
                 Enter your weight:
               </h1></label>
-            <input className={styles.height} type="text" name="weight" placeholder=" 100 kg" size="50"></input><br /><br />
+            <input className={styles.height} onChange={handleChange} value={info.weight} type="text" name="weight" placeholder=" 100 kg" size="50"></input><br /><br />
 
             {/* Calculate button */}
             <button className={styles.calcBtn}>Calculate BMI</button>
