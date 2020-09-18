@@ -8,9 +8,10 @@ export default function Home() {
     weight: ""
   });
 
+  const [description, setDescription] = useState("Calculate your BMI");
+
   function handleChange(event) {
     const { value, name } = event.target;
-    console.log(name)
 
     setInfo((prevValue) => {
       return {
@@ -18,6 +19,11 @@ export default function Home() {
         [name]: value
       }
     })
+  }
+
+  function handleSubmit(event) {
+    setDescription("This is your BMI:")
+    event.preventDefault()
   }
 
   return (
@@ -33,12 +39,12 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Calculate your BMI
+          {description}
         </p>
 
         <div className={styles.grid}>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             {/* Height entry */}
             <label>
               <h1>Enter your height:</h1>
@@ -53,7 +59,7 @@ export default function Home() {
             <input className={styles.height} onChange={handleChange} value={info.weight} type="text" name="weight" placeholder=" 100 kg" size="50"></input><br /><br />
 
             {/* Calculate button */}
-            <button className={styles.calcBtn}>Calculate BMI</button>
+            <button className={styles.calcBtn} type="submit">Calculate BMI</button>
           </form>
 
 
