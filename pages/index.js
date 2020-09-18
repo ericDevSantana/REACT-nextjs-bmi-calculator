@@ -8,7 +8,8 @@ export default function Home() {
     weight: ""
   });
 
-  const [description, setDescription] = useState("Calculate your BMI");
+  const [description, setDescription] = useState("");
+  const [bmi, setBMI] = useState("");
 
   function handleChange(event) {
     const { value, name } = event.target;
@@ -22,8 +23,17 @@ export default function Home() {
   }
 
   function handleSubmit(event) {
-    setDescription("This is your BMI:")
+    setDescription("Your BMI is: ");
+    calculateBMI(info.height, info.weight);
+
     event.preventDefault()
+  }
+
+  function calculateBMI(height, weight) {
+    const h = Number(height);
+    const w = Number(weight);
+
+    setBMI((w / Math.pow(h, 2)).toFixed(2));
   }
 
   return (
@@ -39,7 +49,8 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          {description}
+          {description}<br/>
+          {bmi}
         </p>
 
         <div className={styles.grid}>
@@ -49,7 +60,7 @@ export default function Home() {
             <label>
               <h1>Enter your height:</h1>
             </label>
-            <input className={styles.height} onChange={handleChange} value={info.height} type="text" name="height" placeholder="1.80 cm" size="50"></input>
+            <input className={styles.height} onChange={handleChange} value={info.height} type="text" name="height" placeholder="1.80 m" size="50"></input>
   
             {/* Weight entry */}
             <label>
