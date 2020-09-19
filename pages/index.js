@@ -67,7 +67,7 @@ export default function Home() {
               <h1>
                 Enter your weight:
               </h1></label>
-            <input className={styles.height} onChange={handleChange} value={info.weight} type="text" name="weight" placeholder=" 100 kg" size="50"></input><br /><br />
+            <input className={styles.height} onChange={handleChange} value={info.weight} type="text" name="weight" placeholder=" 100 kg" size="50"></input><br /><br /><br />
 
             {/* Calculate button */}
             <button className={styles.calcBtn} type="submit">Calculate BMI</button>
