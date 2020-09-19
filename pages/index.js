@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useState } from 'react'
 import CopyrightIcon from '@material-ui/icons/Copyright';
+import { InfoRounded } from '@material-ui/icons';
 
 export default function Home() {
   const [info, setInfo] = useState({
@@ -24,10 +25,25 @@ export default function Home() {
   }
 
   function handleSubmit(event) {
-    setDescription("Your BMI is: ");
-    calculateBMI(info.height, info.weight);
+    const isDigit = /^[\d]*[.]?[\d]+$/;
 
-    event.preventDefault()
+    if (info.height !== "" && info.weight !== "") {
+
+      if (isDigit.test(info.height) && isDigit.test(info.weight)) {
+
+        setDescription("Your BMI is: ");
+        calculateBMI(info.height, info.weight);
+
+      } else {
+
+        console.log("Please enter a Number.")
+      }
+
+    } else {
+      console.log("Please fill out all the inputs.")
+    }
+    
+    event.preventDefault();
   }
 
   function calculateBMI(height, weight) {
