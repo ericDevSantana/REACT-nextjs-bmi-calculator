@@ -25,25 +25,17 @@ export default function Home() {
   }
 
   function handleSubmit(event) {
-    const isDigit = /^[\d]*[.]?[\d]+$/;
+    const isDigit = /^[\d]*[.]?[\d]+$/;      
 
-    if (info.height !== "" && info.weight !== "") {
+    if (isDigit.test(info.height) && isDigit.test(info.weight)) {
 
-      if (isDigit.test(info.height) && isDigit.test(info.weight)) {
-
-        setDescription("Your BMI is: ");
-        calculateBMI(info.height, info.weight);
-
-      } else {
-
-        console.log("Please enter a Number.")
-
-      }
+      setDescription("Your BMI is: ");
+      calculateBMI(info.height, info.weight);
 
     } else {
 
-      console.log("Please fill out all the inputs.")
-      
+      //show validation message
+
     }
     
     event.preventDefault();
@@ -80,14 +72,14 @@ export default function Home() {
             <label>
               <h1>Enter your height:</h1>
             </label>
-            <input className={styles.height} onChange={handleChange} value={info.height} type="text" name="height" placeholder="1.80 m" size="50"></input>
+            <input className={styles.height} onChange={handleChange} value={info.height} type="text" name="height" placeholder="1.80 m" size="50" required></input>
   
             {/* Weight entry */}
             <label>
               <h1>
                 Enter your weight:
               </h1></label>
-            <input className={styles.height} onChange={handleChange} value={info.weight} type="text" name="weight" placeholder=" 100 kg" size="50"></input><br /><br /><br />
+            <input className={styles.height} onChange={handleChange} value={info.weight} type="text" name="weight" placeholder=" 100 kg" size="50" required></input><br /><br /><br />
 
             {/* Calculate button */}
             <button className={styles.calcBtn} type="submit">Calculate BMI</button>
