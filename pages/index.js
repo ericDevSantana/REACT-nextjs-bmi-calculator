@@ -37,10 +37,13 @@ export default function Home() {
       } else {
 
         console.log("Please enter a Number.")
+
       }
 
     } else {
+
       console.log("Please fill out all the inputs.")
+      
     }
     
     event.preventDefault();
