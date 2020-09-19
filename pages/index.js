@@ -2,7 +2,6 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useState } from 'react'
 import CopyrightIcon from '@material-ui/icons/Copyright';
-import { InfoRounded } from '@material-ui/icons';
 
 export default function Home() {
   const [info, setInfo] = useState({
@@ -25,18 +24,9 @@ export default function Home() {
   }
 
   function handleSubmit(event) {
-    const isDigit = /^[\d]*[.]?[\d]+$/;      
-
-    if (isDigit.test(info.height) && isDigit.test(info.weight)) {
 
       setDescription("Your BMI is: ");
       calculateBMI(info.height, info.weight);
-
-    } else {
-
-      //show validation message
-
-    }
     
     event.preventDefault();
   }
@@ -67,19 +57,19 @@ export default function Home() {
 
         <div className={styles.grid}>
 
-          <form onSubmit={handleSubmit}>
+          <form name="form" onSubmit={handleSubmit}>
             {/* Height entry */}
             <label>
               <h1>Enter your height:</h1>
             </label>
-            <input className={styles.height} onChange={handleChange} value={info.height} type="text" name="height" placeholder="1.80 m" size="50" required></input>
+            <input className={styles.height} onChange={handleChange} value={info.height} type="text" pattern="^[\d]*[.]?[\d]+$" name="height" placeholder="1.80 m" size="50" required></input>
   
             {/* Weight entry */}
             <label>
               <h1>
                 Enter your weight:
               </h1></label>
-            <input className={styles.height} onChange={handleChange} value={info.weight} type="text" name="weight" placeholder=" 100 kg" size="50" required></input><br /><br /><br />
+            <input className={styles.height} onChange={handleChange} value={info.weight} type="text" pattern="^[\d]*[.]?[\d]+$" name="weight" placeholder=" 100 kg" size="50" required></input><br /><br /><br />
 
             {/* Calculate button */}
             <button className={styles.calcBtn} type="submit">Calculate BMI</button>
