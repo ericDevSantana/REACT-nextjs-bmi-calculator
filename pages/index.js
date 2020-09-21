@@ -12,6 +12,7 @@ export default function Home() {
   const [description, setDescription] = useState("");
   const [bmi, setBMI] = useState("");
 
+  // OnChange update input state
   function handleChange(event) {
     const { value, name } = event.target;
 
@@ -23,6 +24,7 @@ export default function Home() {
     })
   }
 
+  // OnSubmit show description with BMI
   function handleSubmit(event) {
 
       setDescription("Your BMI is: ");
@@ -31,6 +33,7 @@ export default function Home() {
     event.preventDefault();
   }
 
+  // Calculate BMI from heigh and weight
   function calculateBMI(height, weight) {
     const h = Number(height);
     const w = Number(weight);
@@ -45,11 +48,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* Show title */}
       <main className={styles.main}>
         <h1 className={styles.title}>
           BMI Calculator
         </h1>
 
+        {/* Show description and BMI */}
         <p className={styles.description}>
           {description}<br/>
           {bmi}
@@ -57,7 +62,7 @@ export default function Home() {
 
         <div className={styles.grid}>
 
-          <form name="form" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             {/* Height entry */}
             <label>
               <h1>Enter your height:</h1>
